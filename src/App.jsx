@@ -5,6 +5,16 @@ import BankDetails from './BankDetails.jsx'
 
 const photo = (n) => `${import.meta.env.BASE_URL}photos/${n}.jpg`
 
+const PHOTOS = [
+  { id: 3234, caption: 'Hello world', alt: 'Hanna as a newborn in yellow shorts', pos: '50% 30%' },
+  { id: 3588, caption: 'Pretty in pink', alt: 'Hanna in a pink flower headband', pos: '50% 25%' },
+  { id: 1472, caption: 'Ready to race', alt: 'Hanna in her racing car walker', pos: '50% 35%' },
+  { id: 5468, caption: 'Giggles', alt: 'Hanna giggling in a teddy robe', pos: '50% 25%' },
+  { id: 6386, caption: 'Little bumblebee', alt: 'Hanna smiling in a bee backpack', pos: '50% 30%' },
+  { id: 5477, caption: 'Standing tall', alt: 'Hanna standing in her teddy robe', pos: '50% 30%' },
+  { id: 6032, caption: 'Sweet smile', alt: 'Hanna smiling in a pink bow headband', pos: '50% 40%' },
+]
+
 function useCountdown(targetISO) {
   const [now, setNow] = useState(() => Date.now())
   useEffect(() => {
@@ -81,23 +91,14 @@ export default function App() {
         </section>
 
         <section className="strip" aria-label="Photos of Hanna">
-          <figure style={{ '--r': '-3deg' }}>
-            <img src={photo(3234)} alt="Hanna as a newborn in yellow shorts" loading="lazy" />
-            <figcaption>Hello world</figcaption>
-          </figure>
-          <figure style={{ '--r': '2.5deg' }}>
-            <img src={photo(1472)} alt="Hanna in her little racing car walker" loading="lazy" />
-            <figcaption>Ready to race</figcaption>
-          </figure>
-          <figure style={{ '--r': '-2deg' }}>
-            <img src={photo(5468)} alt="Hanna giggling in a teddy robe" loading="lazy" />
-            <figcaption>Giggles</figcaption>
-          </figure>
-          <figure style={{ '--r': '3deg' }}>
-            <img src={photo(5477)} alt="Hanna standing up in her teddy robe" loading="lazy" />
-            <figcaption>Standing tall</figcaption>
-          </figure>
+          {PHOTOS.map((p, i) => (
+            <figure key={p.id} style={{ '--r': `${i % 2 ? 2 : -2}deg` }}>
+              <img src={photo(p.id)} alt={p.alt} loading="lazy" style={{ objectPosition: p.pos }} />
+              <figcaption>{p.caption}</figcaption>
+            </figure>
+          ))}
         </section>
+        <p className="swipe-hint" aria-hidden="true">swipe →</p>
 
         <section id="rsvp" className="card" aria-labelledby="rsvp-h">
           <h2 id="rsvp-h" className="script">Will you celebrate with us?</h2>
