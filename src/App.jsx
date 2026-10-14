@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { EVENT } from './config.js'
 import RsvpForm from './RsvpForm.jsx'
 import BankDetails from './BankDetails.jsx'
+import NotesBoard from './NotesBoard.jsx'
 
 const photo = (n) => `${import.meta.env.BASE_URL}photos/${n}.jpg`
 
@@ -30,6 +31,17 @@ function useCountdown(targetISO) {
 }
 
 export default function App() {
+  const [route, setRoute] = useState(() => window.location.hash)
+  useEffect(() => {
+    const onHash = () => { setRoute(window.location.hash); if (window.location.hash === '#notes') window.scrollTo(0, 0) }
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
+  if (route === '#notes') return <NotesBoard />
+  return <Invite />
+}
+
+function Invite() {
   const { days, hours, mins } = useCountdown(EVENT.dateISO)
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(EVENT.mapsQuery)}`
   const deadlinePassed = Date.now() > new Date(EVENT.rsvpDeadlineISO).getTime()
@@ -122,6 +134,7 @@ export default function App() {
 
       <footer>
         <p className="script">With love, the Ahinche family</p>
+        <p className="small"><a href="#notes">💌 Read notes for Hanna</a></p>
         <p className="small">
           Questions? Call{' '}
           {EVENT.contacts.map((c, i) => (

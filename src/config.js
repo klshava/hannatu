@@ -39,3 +39,12 @@ export const GOOGLE_FORM = {
     contact: 'entry.835664827',
   },
 }
+
+// ─── Notes board: reads name + message columns from the responses Sheet ────
+// Sheet must be viewable by "anyone with the link". Column letters match the
+// form's response sheet (A timestamp, B name, G message).
+export const NOTES = {
+  sheetId: '1hJeNpzG-2UzIAO9_FCniFMLR8r8Aq6lWx1N_6Slio3w',
+  nameCol: 'B',
+  messageCol: 'G',
+}

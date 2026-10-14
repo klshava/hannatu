@@ -79,6 +79,7 @@ export default function RsvpForm() {
             : `Thanks for letting us know, ${first}. We'll be thinking of you. If you'd still like to celebrate Hanna with a gift, here are her details:`}
         </p>
         {!attending && <BankDetails />}
+        <a className="btn primary" href="#notes">💌 Read notes for Hanna</a>
         <button className="btn ghost" onClick={() => { setForm(empty); setStatus('idle') }}>
           RSVP for someone else
         </button>
