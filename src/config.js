@@ -2,7 +2,7 @@
 export const EVENT = {
   childName: 'Hannatu Rufaro Ahinche',
   nickname: 'Hanna',
-  dateISO: '2026-12-12T00:00:00+11:00',
+  dateISO: '2026-12-12T13:00:00+11:00',
   dateLabel: 'Saturday, 12 December 2026',
   time: 'Starts at 1:00 pm',
   venue: 'Craigieburn Sporting Club',
