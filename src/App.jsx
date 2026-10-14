@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { EVENT, BANK } from './config.js'
+import { EVENT } from './config.js'
 import RsvpForm from './RsvpForm.jsx'
+import BankDetails from './BankDetails.jsx'
 
 const photo = (n) => `${import.meta.env.BASE_URL}photos/${n}.jpg`
 
@@ -16,24 +17,6 @@ function useCountdown(targetISO) {
     hours: Math.floor(diff / 3_600_000) % 24,
     mins: Math.floor(diff / 60_000) % 60,
   }
-}
-
-function CopyButton({ value, label }) {
-  const [done, setDone] = useState(false)
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(value)
-      setDone(true)
-      setTimeout(() => setDone(false), 1800)
-    } catch {
-      window.prompt('Copy this:', value)
-    }
-  }
-  return (
-    <button type="button" className="copy" onClick={copy} aria-label={`Copy ${label}`}>
-      {done ? 'Copied ✓' : 'Copy'}
-    </button>
-  )
 }
 
 export default function App() {
@@ -132,20 +115,7 @@ export default function App() {
             Hanna has all the toys she could ever want! If you'd like to give, we'd be so grateful for a
             contribution to her investment account instead.
           </p>
-          <dl className="bank">
-            <div>
-              <dt>Account name</dt>
-              <dd>{BANK.accountName}<CopyButton value={BANK.accountName} label="account name" /></dd>
-            </div>
-            <div>
-              <dt>BSB</dt>
-              <dd>{BANK.bsb}<CopyButton value={BANK.bsb} label="BSB" /></dd>
-            </div>
-            <div>
-              <dt>Account number</dt>
-              <dd>{BANK.account}<CopyButton value={BANK.account} label="account number" /></dd>
-            </div>
-          </dl>
+          <BankDetails />
         </section>
       </main>
 

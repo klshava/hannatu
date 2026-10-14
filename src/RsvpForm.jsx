@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { GOOGLE_FORM, EVENT } from './config.js'
+import BankDetails from './BankDetails.jsx'
 
 const empty = {
   name: '',
@@ -67,15 +68,17 @@ export default function RsvpForm() {
   }
 
   if (status === 'done') {
+    const first = form.name.trim().split(' ')[0]
     return (
       <div className="thanks" role="status">
         <div className="big">{attending ? '🎉' : '💗'}</div>
         <h3 className="script">{attending ? "Can't wait to see you!" : "We'll miss you!"}</h3>
         <p>
           {attending
-            ? `Thanks ${form.name.split(' ')[0]}, you're on the list for ${EVENT.dateLabel}.`
-            : `Thanks for letting us know, ${form.name.split(' ')[0]}. We'll be thinking of you.`}
+            ? `Thanks ${first}, you're on the list for ${EVENT.dateLabel}.`
+            : `Thanks for letting us know, ${first}. We'll be thinking of you. If you'd still like to celebrate Hanna with a gift, here are her details:`}
         </p>
+        {!attending && <BankDetails />}
         <button className="btn ghost" onClick={() => { setForm(empty); setStatus('idle') }}>
           RSVP for someone else
         </button>

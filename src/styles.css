@@ -150,3 +150,5 @@ footer .small a { color: var(--hot); font-weight: 700; text-decoration: none; wh
 @keyframes fall { to { transform: translateY(110vh) translateX(30px); } }
 .hero, main, footer { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce) { .confetti { display: none; } html { scroll-behavior: auto; } }
+
+.thanks .bank { text-align: left; margin: 16px 0; }
